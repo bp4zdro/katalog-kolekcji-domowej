@@ -15,6 +15,9 @@ class Catalogue:
     def clear_entries(self) -> None:
         self._entries.clear()
 
+    def list_entries(self) -> str:
+        return str(self._entries)
+
     def find_entry_by_title(self, title: str) -> Entry:
         for e in self._entries:
             if e.info.title == title:
