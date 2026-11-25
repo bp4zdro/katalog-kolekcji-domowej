@@ -5,6 +5,14 @@ class Catalogue:
         super().__init__(*args, **kwargs)
         self._entries = list()
     
+    def __str__(self):
+        s = ""
+        for i in range(len(self._entries)):
+            s += str(self._entries[i])
+            if not i == len(self._entries)-1:
+                s += '\n'
+        return s
+
     def add_entry(self, entry: Entry) -> None:
         if not entry in self._entries:
             self._entries.append(entry)
@@ -14,9 +22,6 @@ class Catalogue:
 
     def clear_entries(self) -> None:
         self._entries.clear()
-
-    def list_entries(self) -> str:
-        return str(self._entries)
 
     def find_entry_by_title(self, title: str) -> Entry:
         for e in self._entries:

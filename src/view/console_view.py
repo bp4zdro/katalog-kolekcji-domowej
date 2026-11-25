@@ -10,19 +10,24 @@ class ConsoleView:
 
         match tokens[0]:
             case "LIST":
-                print(self.catalogue.list_entries())
+                print(self.catalogue)
             
             case "ADD":
-                info = EntryInfo("type", "desc", "authors", "year")
+                info = EntryInfo("type", "title", "desc", "authors", "year")
                 entry = PhysicalEntry(info)
                 self.catalogue.add_entry(entry)
             
             case "DEL":
-                if len(tokens) < 1:
+                if len(tokens) < 2:
                     raise ValueError("Not enough input arguments")
                 
                 entry = self.catalogue.find_entry_by_title(tokens[1])
-                self.catalogue.remove_entry(entry)
+                try:
+                    self.catalogue.remove_entry(entry)
+                except ValueError:
+                    print("Entry not found")
+                else:
+                    print(f"Entry \"{tokens[1]}\" removed")
             
             case _:
                 raise ValueError("Unknown input command")
