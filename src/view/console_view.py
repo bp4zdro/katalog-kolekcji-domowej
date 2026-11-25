@@ -5,10 +5,22 @@ class ConsoleView:
     def __init__(self, catalogue: Catalogue, *args, **kwargs) -> None:
         self.catalogue = catalogue
 
-    def process_input(self, input: str) -> str:
+    def enter(self) -> None:
+        while True:
+            inpt = input('> ')
+            try:
+                if self.process_input(inpt):
+                    break
+            except ValueError as e:
+                print(e)
+
+    def process_input(self, input: str) -> bool:
         tokens = input.split(' ')
 
         match tokens[0]:
+            case "EXIT":
+                return True
+
             case "LIST":
                 print(self.catalogue)
             
@@ -31,3 +43,5 @@ class ConsoleView:
             
             case _:
                 raise ValueError("Unknown input command")
+        
+        return False

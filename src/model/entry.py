@@ -28,7 +28,7 @@ class Entry(ABC):
         i = self.info
         s = ''
 
-        if self.lent_to():
+        if self.is_lent():
             s += '[LENT] '
         s += '('+i.year_published+' '+i.type+') '+i.authors+' - '+i.title 
         return s
