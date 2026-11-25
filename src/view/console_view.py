@@ -6,6 +6,9 @@ class ConsoleView:
         self.catalogue = catalogue
 
     def enter(self) -> None:
+        """Otwiera dostęp do katalogu
+        """
+        
         while True:
             inpt = input('> ')
             try:
@@ -15,6 +18,19 @@ class ConsoleView:
                 print(e)
 
     def process_input(self, input: str) -> bool:
+        """Przetwarza ciąg argumentów wejściowych i komunikuje się z katalogiem
+        drukując wyniki do konsoli
+            
+        Args:
+            input (str): Ciąg argumentów wejściowych
+        
+        Returns:
+            (bool): Czy wpisana została komenda zamknięcia widoku
+
+        Raises:
+            ValueError: Niepoprawny argument wejściowy
+        """
+
         tokens = input.split(' ')
 
         match tokens[0]:
